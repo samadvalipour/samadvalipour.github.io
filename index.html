@@ -18,19 +18,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const webApp = window.Telegram.WebApp;
-                const webAppChat = window.Telegram.webAppChat;
                 console.log("webApp");
-                console.log(webApp.initDataUnsafe.user);
-                console.log("window.Telegram");
-                console.log(window.Telegram);
+                console.log(webApp);
                 // Display data in HTML elements
                 document.getElementById('user-id').textContent = webApp.initDataUnsafe.user.id || 'N/A';
                 document.getElementById('user-first-name').textContent = webApp.initDataUnsafe.user.first_name || 'N/A';
                 document.getElementById('user-last-name').textContent = webApp.initDataUnsafe.user.last_name || 'N/A';
                 document.getElementById('user-username').textContent = webApp.initDataUnsafe.user.username || 'N/A';
-                document.getElementById('chat-id').textContent = webAppChat.initDataUnsafe.chat.id || 'N/A';
-                document.getElementById('chat-title').textContent = webAppChat.initDataUnsafe.chat.title || 'N/A';
-                document.getElementById('chat-type').textContent = webAppChat.initDataUnsafe.chat.type || 'N/A';
+                document.getElementById('chat-id').textContent = webApp.initDataUnsafe.chat.id || 'N/A';
+                document.getElementById('chat-title').textContent = webApp.initDataUnsafe.chat.title || 'N/A';
+                document.getElementById('chat-type').textContent = webApp.initDataUnsafe.chat.type || 'N/A';
                 document.getElementById('bot-name').textContent = webApp.initDataUnsafe.bot_info.name || 'N/A';
                 document.getElementById('bot-username').textContent = webApp.initDataUnsafe.bot_info.username || 'N/A';
                 document.getElementById('theme-color').textContent = webApp.themeParams.color_scheme || 'N/A';
