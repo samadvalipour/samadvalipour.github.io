@@ -18,6 +18,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const webApp = window.Telegram.WebApp;
+                console.log("webApp");
                 console.log(webApp);
                 // Display data in HTML elements
                 document.getElementById('user-id').textContent = webApp.initDataUnsafe.user.id || 'N/A';
