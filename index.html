@@ -25,6 +25,7 @@
                 document.getElementById('user-first-name').textContent = webApp.initDataUnsafe.user.first_name || 'N/A';
                 document.getElementById('user-last-name').textContent = webApp.initDataUnsafe.user.last_name || 'N/A';
                 document.getElementById('user-username').textContent = webApp.initDataUnsafe.user.username || 'N/A';
+                document.getElementById('user-pro').textContent = webApp.initDataUnsafe.user.photo_url || 'N/A';
                 document.getElementById('chat-id').textContent = webApp.initDataUnsafe.chat.id || 'N/A';
                 document.getElementById('chat-title').textContent = webApp.initDataUnsafe.chat.title || 'N/A';
                 document.getElementById('chat-type').textContent = webApp.initDataUnsafe.chat.type || 'N/A';
@@ -47,6 +48,7 @@
     <div class="data">User First Name: <span id="user-first-name"></span></div>
     <div class="data">User Last Name: <span id="user-last-name"></span></div>
     <div class="data">User Username: <span id="user-username"></span></div>
+    <div class="data">User profile: <span id="user-pro"></span></div>
     <div class="data">Chat ID: <span id="chat-id"></span></div>
     <div class="data">Chat Title: <span id="chat-title"></span></div>
     <div class="data">Chat Type: <span id="chat-type"></span></div>
