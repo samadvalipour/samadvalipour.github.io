@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Mini App Data Display</title>
+    <title>Telegram Mini App User Data Display</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
@@ -13,27 +13,38 @@
         .data {
             margin-bottom: 10px;
         }
+        .photo {
+            margin-top: 10px;
+        }
+        .photo img {
+            max-width: 200px;
+            height: auto;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const webApp = window.Telegram.WebApp;
-                console.log("webApp");
-                console.log(webApp);
+                const user = webApp.initDataUnsafe.user;
+
                 // Display data in HTML elements
-                document.getElementById('user-id').textContent = webApp.initDataUnsafe.user.id || 'N/A';
-                document.getElementById('user-first-name').textContent = webApp.initDataUnsafe.user.first_name || 'N/A';
-                document.getElementById('user-last-name').textContent = webApp.initDataUnsafe.user.last_name || 'N/A';
-                document.getElementById('user-username').textContent = webApp.initDataUnsafe.user.username || 'N/A';
-                document.getElementById('user-pro').textContent = webApp.initDataUnsafe.user.photo_url || 'N/A';
-                document.getElementById('chat-id').textContent = webApp.initDataUnsafe.chat.id || 'N/A';
-                document.getElementById('chat-title').textContent = webApp.initDataUnsafe.chat.title || 'N/A';
-                document.getElementById('chat-type').textContent = webApp.initDataUnsafe.chat.type || 'N/A';
-                document.getElementById('bot-name').textContent = webApp.initDataUnsafe.bot_info.name || 'N/A';
-                document.getElementById('bot-username').textContent = webApp.initDataUnsafe.bot_info.username || 'N/A';
-                document.getElementById('theme-color').textContent = webApp.themeParams.color_scheme || 'N/A';
-                document.getElementById('is-web-app').textContent = webApp.isWebApp ? 'Yes' : 'No';
-                document.getElementById('platform').textContent = webApp.platform || 'N/A';
+                document.getElementById('user-id').textContent = user.id || 'N/A';
+                document.getElementById('is-bot').textContent = user.is_bot ? 'Yes' : 'No';
+                document.getElementById('first-name').textContent = user.first_name || 'N/A';
+                document.getElementById('last-name').textContent = user.last_name || 'N/A';
+                document.getElementById('username').textContent = user.username || 'N/A';
+                document.getElementById('language-code').textContent = user.language_code || 'N/A';
+                document.getElementById('is-premium').textContent = user.is_premium ? 'Yes' : 'No';
+                document.getElementById('added-to-attachment-menu').textContent = user.added_to_attachment_menu ? 'Yes' : 'No';
+                document.getElementById('allows-write-to-pm').textContent = user.allows_write_to_pm ? 'Yes' : 'No';
+
+                // Display photo URL and image
+                const photoUrl = user.photo_url || 'N/A';
+                document.getElementById('photo-url').textContent = photoUrl;
+                if (photoUrl !== 'N/A') {
+                    document.getElementById('photo-image').src = photoUrl;
+                    document.getElementById('photo-section').style.display = 'block';
+                }
 
                 webApp.ready();
             } else {
@@ -43,20 +54,20 @@
     </script>
 </head>
 <body>
-    <h1>Telegram Mini App Data Display</h1>
+    <h1>Telegram Mini App User Data Display</h1>
     <div class="data">User ID: <span id="user-id"></span></div>
-    <div class="data">User First Name: <span id="user-first-name"></span></div>
-    <div class="data">User Last Name: <span id="user-last-name"></span></div>
-    <div class="data">User Username: <span id="user-username"></span></div>
-    <div class="data">User profile: <span id="user-pro"></span></div>
-    <div class="data">Chat ID: <span id="chat-id"></span></div>
-    <div class="data">Chat Title: <span id="chat-title"></span></div>
-    <div class="data">Chat Type: <span id="chat-type"></span></div>
-    <div class="data">Bot Name: <span id="bot-name"></span></div>
-    <div class="data">Bot Username: <span id="bot-username"></span></div>
-    <div class="data">Theme Color: <span id="theme-color"></span></div>
-    <div class="data">Is Web App: <span id="is-web-app"></span></div>
-    <div class="data">Platform: <span id="platform"></span></div>
+    <div class="data">Is Bot: <span id="is-bot"></span></div>
+    <div class="data">First Name: <span id="first-name"></span></div>
+    <div class="data">Last Name: <span id="last-name"></span></div>
+    <div class="data">Username: <span id="username"></span></div>
+    <div class="data">Language Code: <span id="language-code"></span></div>
+    <div class="data">Is Premium: <span id="is-premium"></span></div>
+    <div class="data">Added to Attachment Menu: <span id="added-to-attachment-menu"></span></div>
+    <div class="data">Allows Write to PM: <span id="allows-write-to-pm"></span></div>
+    <div id="photo-section" class="photo" style="display: none;">
+        <div>Photo URL: <span id="photo-url"></span></div>
+        <img id="photo-image" alt="User Photo">
+    </div>
     <div id="error" style="color: red;"></div>
 </body>
 </html>
