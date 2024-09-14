@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App Data Display</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .data {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.Telegram && window.Telegram.WebApp) {
+                const webApp = window.Telegram.WebApp;
+
+                // Display data in HTML elements
+                document.getElementById('user-id').textContent = webApp.initDataUnsafe.user.id || 'N/A';
+                document.getElementById('user-first-name').textContent = webApp.initDataUnsafe.user.first_name || 'N/A';
+                document.getElementById('user-last-name').textContent = webApp.initDataUnsafe.user.last_name || 'N/A';
+                document.getElementById('user-username').textContent = webApp.initDataUnsafe.user.username || 'N/A';
+                document.getElementById('chat-id').textContent = webApp.initDataUnsafe.chat.id || 'N/A';
+                document.getElementById('chat-title').textContent = webApp.initDataUnsafe.chat.title || 'N/A';
+                document.getElementById('chat-type').textContent = webApp.initDataUnsafe.chat.type || 'N/A';
+                document.getElementById('bot-name').textContent = webApp.initDataUnsafe.bot_info.name || 'N/A';
+                document.getElementById('bot-username').textContent = webApp.initDataUnsafe.bot_info.username || 'N/A';
+                document.getElementById('theme-color').textContent = webApp.themeParams.color_scheme || 'N/A';
+                document.getElementById('is-web-app').textContent = webApp.isWebApp ? 'Yes' : 'No';
+                document.getElementById('platform').textContent = webApp.platform || 'N/A';
+
+                webApp.ready();
+            } else {
+                document.getElementById('error').textContent = 'Telegram WebApp script not loaded.';
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Telegram Mini App Data Display</h1>
+    <div class="data">User ID: <span id="user-id"></span></div>
+    <div class="data">User First Name: <span id="user-first-name"></span></div>
+    <div class="data">User Last Name: <span id="user-last-name"></span></div>
+    <div class="data">User Username: <span id="user-username"></span></div>
+    <div class="data">Chat ID: <span id="chat-id"></span></div>
+    <div class="data">Chat Title: <span id="chat-title"></span></div>
+    <div class="data">Chat Type: <span id="chat-type"></span></div>
+    <div class="data">Bot Name: <span id="bot-name"></span></div>
+    <div class="data">Bot Username: <span id="bot-username"></span></div>
+    <div class="data">Theme Color: <span id="theme-color"></span></div>
+    <div class="data">Is Web App: <span id="is-web-app"></span></div>
+    <div class="data">Platform: <span id="platform"></span></div>
+    <div id="error" style="color: red;"></div>
+</body>
+</html>
